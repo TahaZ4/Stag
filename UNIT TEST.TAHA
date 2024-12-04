@@ -1,0 +1,29 @@
+def test_encode_decode():
+    # Test data
+    original_image_path = 'original_image.png'  # Placeholder for original image
+    output_image_path = 'encoded_image.png'      # Placeholder for encoded image
+    message = "Hello"
+    
+    # Step 1: Create a dummy image file for testing
+    with open(original_image_path, 'wb') as f:
+        f.write(bytearray([0] * 100))  # Create a 100-byte dummy image
+    
+    # Step 2: Encode the message into the image
+    encode_message_in_image(original_image_path, message, output_image_path)
+
+    # Step 3: Decode the message from the encoded image
+    decoded_message = decode_message_from_image(output_image_path)
+
+    # Step 4: Check if the decoded message matches the original message
+    assert decoded_message == message, f"Expected '{message}', but got '{decoded_message}'"
+
+    # Clean up (Delete the files created for testing)
+    import os
+    os.remove(original_image_path)
+    os.remove(output_image_path)
+
+    print("Test passed: Message encoding and decoding works correctly.")
+
+if __name__ == "__main__":
+    # Run the unit test
+    test_encode_decode()
